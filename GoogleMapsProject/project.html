@@ -1,0 +1,64 @@
+Google Maps Mashup Starter Code:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		#map {
+			height: 100%;
+		}
+		/* Optional: Makes the sample page fill the window. */
+		html, body {
+            color: white;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	var map;
+	var place = [
+		{"place":"281 checkerberry crescent","coords":[43.737274, -79.772893]},
+		{"place":"workplace","coords":[43.568471, -79.664711]},
+        {"place":"College","coords":[30.045056, 76.875377]},
+        {"place":"Hometown","coords":[30.734124, 74.893590]},
+        {"place":"present college","coords":[43.773430, -79.335494]},
+        {"place":"wonderland","coords":[43.843296, -79.538744]},
+        {"place":"Niagara falls","coords":[43.091267, -79.081807]}
+		];
+
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 4,
+			center: new google.maps.LatLng(44, -110),
+			mapTypeId: 'terrain'
+		});
+
+		mashPlaces(place);
+	}
+
+	function mashPlaces(results) {
+	for (var i = 0; i < results.length; i++) {
+		var coords = results[i].coords;
+		var latLng = new google.maps.LatLng(coords[0], coords[1]);
+		var marker = new google.maps.Marker({
+			position: latLng,
+			map: map,
+			label:results[i].place
+			});
+		}
+	}
+
+
+
+</script>
+<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsSv5wM1pAkgtavL4LqduzsbXEItoq4Ys&callback=initMap">
+</script>
+</body>
+</html>
